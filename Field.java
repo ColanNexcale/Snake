@@ -27,7 +27,6 @@ public class Field extends Application{
 	private static final int FIELD_TILENUMBER = ObjectType.FIELD.getLength();
 	private final int FIELD_PADDING = WINDOW_HEIGHT/SCALING;
 	private final int TILE_SIZE = (WINDOW_WIDTH-2*FIELD_PADDING) / FIELD_TILENUMBER;  
-	/static StringBuilder inputReader = new StringBuilder(20);
 	Controller controller; 
 	
 
