@@ -4,6 +4,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ScheduledFuture;
  import static java.util.concurrent.TimeUnit.*;
+ import javafx.application.Platform; 
+
+
 
 
 class AutoMover extends FixedRateService{
@@ -25,7 +28,13 @@ class AutoMover extends FixedRateService{
 		return new Runnable(){
 			@Override
 			public void run(){
-				controller.moveSnake();
+			
+				Platform.runLater(
+					() -> {
+						controller.moveSnake();
+					}
+				);
+				//controller.moveSnake();
 			}	
 		};
 	}

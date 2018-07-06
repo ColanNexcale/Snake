@@ -16,6 +16,15 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode; 
 import javafx.application.Platform;
+import javafx.scene.control.Label;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleStringProperty; 
+import javafx.geometry.Pos; 
+
+
+
+
+
 
 
 
@@ -28,6 +37,8 @@ public class Field extends Application{
 	private final int FIELD_PADDING = WINDOW_HEIGHT/SCALING;
 	private final int TILE_SIZE = (WINDOW_WIDTH-2*FIELD_PADDING) / FIELD_TILENUMBER;  
 	Controller controller; 
+	private static StringProperty scoreValue; 
+	
 	
 
 	
@@ -57,6 +68,11 @@ public class Field extends Application{
 				Platform.exit();
 			}
 		});
+		btnClose.setPadding (new Insets(5));
+		btnClose.setAlignment(Pos.CENTER);
+		
+
+		
 		
 		Button btnNewGame = new Button("Neues Spiel");
 		btnNewGame.setOnAction(new EventHandler<ActionEvent>(){
@@ -65,6 +81,8 @@ public class Field extends Application{
 				controller.restartGame();
 			}
 		});
+		btnNewGame.setPadding (new Insets(5));
+		btnNewGame.setAlignment(Pos.CENTER);
 	
 		
 		mainScene.setOnKeyPressed(new EventHandler<KeyEvent>(){
@@ -74,16 +92,32 @@ public class Field extends Application{
 				System.out.println(e.getCode());
 			}
 		}); 
+
+		scoreValue = new SimpleStringProperty();
 		
+		HBox scoreDisplay = new HBox(4);
+			Label scoreDescription = new Label();
+			scoreDescription.setText("Punktzahl: ");
+			Label scoreVisual = new Label("0");
+			scoreVisual.textProperty().bind(scoreValue);
+			scoreDisplay.getChildren().add(scoreDescription);
+			scoreDisplay.getChildren().add(scoreVisual);
+			scoreDisplay.setPadding (new Insets(5));
+			scoreDisplay.setAlignment(Pos.CENTER_RIGHT);
+			scoreDisplay.setPrefWidth(WINDOW_WIDTH/2);
 		
+		Label spacer = new Label();
+		//spacer.setPrefWidth(WINDOW_WIDTH/6);
 		
-		
-		HBox topSpacing = new HBox();
+		HBox topSpacing = new HBox(10);
 			topSpacing.setPrefWidth(WINDOW_WIDTH);
 			topSpacing.setPrefHeight(FIELD_PADDING);
+			topSpacing.setPadding(new Insets(10));
 			root.setTop(topSpacing);
 			topSpacing.getChildren().add(btnClose);
 			topSpacing.getChildren().add(btnNewGame);
+			topSpacing.getChildren().add(spacer);
+			topSpacing.getChildren().add(scoreDisplay);
 			
 		HBox botSpacing = new HBox();
 			botSpacing.setPrefWidth(WINDOW_WIDTH);
@@ -126,6 +160,11 @@ public class Field extends Application{
 					paintTileAt(row, col, field[row][col].getColor());
 			}
 		}
+	}
+	
+	static void update (ObjectType[][] field, Score score){
+		update(field);
+		scoreValue.set(Integer.toString(score.getScore()));
 	}
 	
 	

@@ -20,6 +20,7 @@ public class Game{
 	private Field gui;
 	private AutoMover amo;
 	private ObjectSpawner os;
+	private Score score;
 	GameView view;
 	private int countdownToAutospawn = 1;
 	private int autoSpawnRate = 10;
@@ -36,9 +37,10 @@ public class Game{
 
 		os = new ObjectSpawner("Object Spawner");
 		view = new GameView();
-		
+		score = new Score(0);
 		field = os.getInitialSpawns(initialSpawnNumber);
-		snek = placeSnake();  
+		snek = placeSnake();
+		view.update(field, score);  
 		startAutoMove();
 		return true;
 	}
@@ -145,11 +147,14 @@ public class Game{
 			case POISON: gameLost(); break;
 		}
 	}
+	
+	//TODO implement score
+
 	private void eatingStep(int x, int y, Direction dir){
 		snek.extend(new Position(x, y), dir, 0);
-
+		score.add(field[x][y].getValue());
 		field[x][y] = ObjectType.SNAKE;
-		view.update(field);
+		view.update(field, score);
 		amo.updateSpeed();
 		countdownToAutospawn--;
 		checkAutospawn();

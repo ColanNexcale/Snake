@@ -20,6 +20,7 @@ class TheSnake extends GameObject{
 		return body.getLength();
 	}
 	
+	
 	Position getPosition(){
 		return body.getHeadPosition();
 	}
@@ -90,6 +91,7 @@ class TheSnake extends GameObject{
 		BodyPart head;
 		int length = 0;
 		
+		//change direction of head <=> movement
 		private void setDirection(Direction dir){
 			head.dir = dir;
 		}
