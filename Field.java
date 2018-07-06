@@ -24,10 +24,6 @@ import javafx.geometry.Pos;
 
 
 
-
-
-
-
 public class Field extends Application{
 	
 	private final int WINDOW_WIDTH = 400;
@@ -107,7 +103,6 @@ public class Field extends Application{
 			scoreDisplay.setPrefWidth(WINDOW_WIDTH/2);
 		
 		Label spacer = new Label();
-		//spacer.setPrefWidth(WINDOW_WIDTH/6);
 		
 		HBox topSpacing = new HBox(10);
 			topSpacing.setPrefWidth(WINDOW_WIDTH);
@@ -170,11 +165,9 @@ public class Field extends Application{
 	
 	
 	private static void paintTileAt (int x, int y, Color newColor){
-		//Umrechnen der Koordinaten in Listenindex, da getChildren eine Node List zurückgibt => Zugriff auf Grid Objekte
+		//conversion to listindex in order to handle getChildren()
 		int index = x*FIELD_TILENUMBER + y;
 		Rectangle temp = (Rectangle) (gameField.getChildren().get(index));
 		temp.setFill(newColor);
 	}
-	
-	
 }

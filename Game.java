@@ -1,33 +1,29 @@
 import javafx.scene.input.KeyCode; 
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+
 //TODO 
 /*
-- Field => View etablieren, update(ObjectType[][] ota) als einzige schnittstelle
-- Game => ruft nur update auf, ObjectField als Repräsentation (speichert alle positionen)
-
-
-- x,y als Pos-Object codieren
-
+- highscore list
+- menu
 
 */
 
 public class Game{
 	
 	ObjectType[][] field;
-	final int FIELD_SIZE = ObjectType.FIELD.getLength();
+
 	private TheSnake snek;
 	private Field gui;
 	private AutoMover amo;
 	private ObjectSpawner os;
 	private Score score;
 	GameView view;
+	final int FIELD_SIZE = ObjectType.FIELD.getLength();
 	private int countdownToAutospawn = 1;
 	private int autoSpawnRate = 10;
 	private int initialX = FIELD_SIZE/2;
 	private int initialY = FIELD_SIZE/2;
 	private int speed = 500;
-	//private int speedIncrease = 50;
 	private int initialSpawnNumber = FIELD_SIZE;
 
 	
@@ -148,7 +144,6 @@ public class Game{
 		}
 	}
 	
-	//TODO implement score
 
 	private void eatingStep(int x, int y, Direction dir){
 		snek.extend(new Position(x, y), dir, 0);

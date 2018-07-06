@@ -13,6 +13,7 @@ public final class Controller{
 		gameInstanciated = false;
 	}
 	
+	//singleton
 	public static synchronized Controller getController(){
 		if (theController == null)
 			theController = new Controller();

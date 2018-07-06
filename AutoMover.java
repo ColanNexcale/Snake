@@ -1,9 +1,7 @@
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ScheduledFuture;
- import static java.util.concurrent.TimeUnit.*;
  import javafx.application.Platform; 
 
 
@@ -34,7 +32,6 @@ class AutoMover extends FixedRateService{
 						controller.moveSnake();
 					}
 				);
-				//controller.moveSnake();
 			}	
 		};
 	}

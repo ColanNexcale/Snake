@@ -1,9 +1,8 @@
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ScheduledFuture;
- import static java.util.concurrent.TimeUnit.*;
+
 
 abstract class FixedRateService implements Runnable{
 	
@@ -11,7 +10,6 @@ abstract class FixedRateService implements Runnable{
 	ScheduledFuture<?> sf;
 	ScheduledExecutorService ses;
 	Runnable task;
-	//Game game;
 	String threadName;
 	int interval;
 	int delay;
@@ -22,9 +20,6 @@ abstract class FixedRateService implements Runnable{
 		threadName = name;
 	}
 	
-	
-	
-	//
 	abstract Runnable createTask();
 	
 	public void run (){
